@@ -1,0 +1,28 @@
+{
+  "name": "sokolnikov911/yandex-schedule",
+  "type": "library",
+  "description": "PHP Yandex Schedule (rasp) API client",
+  "keywords": [
+    "yandex",
+    "schedule",
+    "rasp",
+    "raspisanie"
+  ],
+  "version": "1.0.0",
+  "homepage": "https://github.com/sokolnikov911/yandex-schedule",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Petro Sokolnykov",
+      "email": "info@xyz.net.ua",
+      "homepage": "https://github.com/sokolnikov911"
+    }
+  ],
+  "require": {
+    "php": ">=7",
+    "guzzlehttp/guzzle": "6.2.3"
+  },
+  "autoload": {
+    "psr-4": { "sokolnikov911\\Client\\": "src" }
+  }
+}

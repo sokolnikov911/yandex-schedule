@@ -2,16 +2,17 @@
 
 namespace sokolnikov911\Client;
 
+use Exception;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException;
 
 class Client
 {
     private $key;
     private $dataFormat = self::DATA_FORMAT_JSON;
     private $lang       = self::DATA_LANG_RU;
-
-    const API_URL = 'https://api.rasp.yandex.net/';
-    const API_VERSION = 'v1.0';
+    private $apiUrl     = 'https://api.rasp.yandex.net/';
+    private $apiVersion = 'v1.0';
 
 
     const DATA_FORMAT_JSON = 'json';
@@ -106,6 +107,7 @@ class Client
      * @param string $transportTypes Transport type
      * @param string $system
      * @param string $showSystems
+     * @param string $direction
      * @param int $page Page of data.
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-on-station-docpage/
@@ -113,8 +115,7 @@ class Client
      * @return string Data
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
-                                               string $showSystems,
-                                               string $date = '', int $page = 1)
+                                               string $direction = '', string $showSystems = '', string $date = '', int $page = 1)
     {
         $queryArray = [
             'station' => $station,
@@ -123,7 +124,7 @@ class Client
             'transport_types' => $transportTypes,
             'system' => $system,
             'show_systems' => $showSystems,
-            'direction' => '', //TODO: should figure out
+            'direction' => $direction,
             'page' => $page
         ];
 
@@ -131,7 +132,7 @@ class Client
     }
 
     /**
-     * @param string $uuid
+     * @param string $uid
      * @param string $showSystems
      * @param string $date Date to which you want to receive a list of flights. Should be specified in the format "YYYY-MM-DD". By default, the list of flights for all dates will be returned.
      *
@@ -139,10 +140,10 @@ class Client
      *
      * @return string Data
      */
-    public function getListStationsRoute(string $uuid, string $showSystems, string $date = '')
+    public function getListStationsRoute(string $uid, string $showSystems = '', string $date = '')
     {
         $queryArray = [
-            'uuid' => $uuid,
+            'uid' => $uid,
             'date' => $date,
             'show_systems' => $showSystems,
         ];
@@ -158,7 +159,7 @@ class Client
      *
      * @return string Data
      */
-    public function getCarrier(string $code, string $system)
+    public function getCarrier(string $code, string $system = '')
     {
         $queryArray = [
             'code' => $code,
@@ -171,7 +172,7 @@ class Client
     /**
      * @param string $lat Latitude according to WGS84
      * @param string $lng Longitude according to WGS84
-     * @param float $distance Radius in km.
+     * @param integer $distance Radius in km (from 0 to 50).
      * @param string $stationType
      * @param string $transportTypes Transport type
      * @param int $page Page of data.
@@ -180,7 +181,7 @@ class Client
      *
      * @return string Data
      */
-    public function getNearestStations(string $lat, string $lng, float $distance,
+    public function getNearestStations(string $lat, string $lng, int $distance,
                                          string $stationType = '', string $transportTypes = '',
                                          int $page = 1)
     {
@@ -211,17 +212,52 @@ class Client
      */
     public function getApiVersion(): string
     {
-        return self::API_VERSION;
+        return $this->getApiVersion();
     }
 
-    protected function getData(string $url)
+    /**
+     * Sends a request
+     *
+     * @param string $url Full URL of end-point
+     *
+     * @throws Exception
+     * @throws ClientException
+     *
+     * @return string Response body
+     */
+    protected function getData(string $url): string
     {
         $client = new HttpClient();
-        $result = $client->get($url);
 
-        return $result->getBody();
+        try {
+            $response = $client->get($url);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $responseData = $response->getBody()->getContents();
+
+            if ($this->dataFormat == self::DATA_FORMAT_XML) {
+                $xml = simplexml_load_string($responseData);
+                $responseData = json_encode($xml, JSON_UNESCAPED_UNICODE);
+            }
+
+            $dataArray = json_decode($responseData, true);
+
+            if ($dataArray['error'] && $dataArray['error']['text']) {
+                throw new Exception($dataArray['error']['text']);
+            } else throw $e;
+        }
+
+        return $response->getBody();
     }
 
+    /**
+     * Sends a request
+     *
+     * @param string $type Type of end-point
+     * @param array $dataArray Additional data
+     *
+     * @return string Full end-point URL
+     */
     protected function getEndpointUrl(string $type, array $dataArray = []): string
     {
         $settingsArray = [
@@ -230,7 +266,7 @@ class Client
             'apikey' => $this->key
         ];
 
-        return self::API_URL . self::API_VERSION . DIRECTORY_SEPARATOR . $type . DIRECTORY_SEPARATOR .
+        return $this->apiUrl . $this->apiVersion . DIRECTORY_SEPARATOR . $type . DIRECTORY_SEPARATOR .
             '?' . http_build_query(array_merge($settingsArray, $dataArray));
     }
 }

@@ -2,8 +2,7 @@ PHP Yandex Schedule (rasp) API client
 =====================================
 
 
-
-Simple values parser from console 'whois' command
+Yandex Schedule (rasp) API client.
 
 
 ## Examples

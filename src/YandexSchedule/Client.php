@@ -1,8 +1,8 @@
 <?php
 
-namespace sokolnikov911\Client;
+namespace YandexSchedule;
 
-use Exception;
+use YandexSchedule\Exception\YandexException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
@@ -220,7 +220,7 @@ class Client
      *
      * @param string $url Full URL of end-point
      *
-     * @throws Exception
+     * @throws YandexException
      * @throws ClientException
      *
      * @return string Response body
@@ -243,7 +243,7 @@ class Client
             $dataArray = json_decode($responseData, true);
 
             if ($dataArray['error'] && $dataArray['error']['text']) {
-                throw new Exception($dataArray['error']['text']);
+                throw new YandexException($dataArray['error']['text']);
             } else throw $e;
         }
 

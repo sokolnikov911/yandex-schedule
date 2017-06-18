@@ -23,6 +23,11 @@
     "guzzlehttp/guzzle": "6.2.3"
   },
   "autoload": {
-    "psr-4": { "sokolnikov911\\Client\\": "src" }
+    "psr-0": {
+      "YandexSchedule": "src/"
+    }
+  },
+  "support": {
+    "issues": "https://github.com/sokolnikov911/yandex-schedule/issues"
   }
 }

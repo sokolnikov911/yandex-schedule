@@ -50,6 +50,7 @@ echo $client->getCopyright();
 
 
 **Switching between data formats (XML and JSON available) and language versions (russian, ukrainian, turkish)**
+
 By default using JSON format and russian language.
 
 
@@ -68,7 +69,7 @@ $client->setLanguage(Client::DATA_LANG_UK);
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Next, run the Composer command to install the latest stable version of `yandex-schedule`
+Next, run the Composer command to install the latest stable version of **yandex-schedule**
 
 ```bash
 php composer.phar require sokolnikov911/yandex-schedule
@@ -80,7 +81,7 @@ After installing, you need to require Composer's autoloader:
 require 'vendor/autoload.php';
 ```
 
-You can then later update `yandex-schedule` using composer:
+You can then later update **yandex-schedule** using composer:
 
  ```bash
 composer.phar update
@@ -89,7 +90,7 @@ composer.phar update
  
 ## Requirements
 
-This client requires at least PHP7 and [Guzzle](https://github.com/guzzle/guzzle) 6.2.3.
+This client requires at least PHP7 (yeahh, type hinting!) and [Guzzle](https://github.com/guzzle/guzzle) 6.2.3.
 
 
 ## License

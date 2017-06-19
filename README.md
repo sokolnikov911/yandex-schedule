@@ -1,6 +1,12 @@
 PHP Yandex Schedule (rasp) API client
 =====================================
 
+[![Latest Stable Version](https://poser.pugx.org/sokolnikov911/yandex-schedule/v/stable)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
+[![Total Downloads](https://poser.pugx.org/sokolnikov911/yandex-schedule/downloads)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
+[![Latest Unstable Version](https://poser.pugx.org/sokolnikov911/yandex-schedule/v/unstable)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
+[![License](https://poser.pugx.org/sokolnikov911/yandex-schedule/license)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
+[![composer.lock](https://poser.pugx.org/sokolnikov911/yandex-schedule/composerlock)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
+
 
 Yandex Schedule (rasp) API client.
 

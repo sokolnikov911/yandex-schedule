@@ -2,7 +2,7 @@
 
 namespace YandexSchedule;
 
-use YandexSchedule\Exception\YandexException;
+use YandexSchedule\Exceptions\YandexException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 

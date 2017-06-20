@@ -3,7 +3,7 @@
 /**
  * @namespace
  */
-namespace YandexSchedule\Exception;
+namespace YandexSchedule\Exceptions;
 
 use Exception;
 

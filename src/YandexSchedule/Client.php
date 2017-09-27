@@ -44,6 +44,10 @@ class Client
     const ENDPOINT_NEAREST_STATIONS = 'nearest_stations';
     const ENDPOINT_COPYRIGHT = 'copyright';
 
+    const EVENT_ALL = 'all';
+    const EVENT_ARRIVAL = 'arrival';
+    const EVENT_DEPARTURE = 'departure';
+
     /**
      * @param string $key API key
      *
@@ -108,18 +112,20 @@ class Client
      * @param string $system
      * @param string $showSystems
      * @param string $direction
-     * @param int $page Page of data.
+     * @param int $page Page of data
+     * @param string $event Event of schedule
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-on-station-docpage/
      *
      * @return string Data
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
-                                               string $direction = '', string $showSystems = '', string $date = '', int $page = 1)
+                                               string $direction = '', string $showSystems = '', string $date = '', int $page = 1,
+                                               string $event = self::EVENT_ALL)
     {
         $queryArray = [
             'station' => $station,
-            'event' => 'arrival',
+            'event' => $event,
             'date' => $date,
             'transport_types' => $transportTypes,
             'system' => $system,

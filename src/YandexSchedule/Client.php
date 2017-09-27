@@ -110,18 +110,18 @@ class Client
      * @param string $date Date to which you want to receive a list of flights. Should be specified in the format "YYYY-MM-DD". By default, the list of flights for all dates will be returned.
      * @param string $transportTypes Transport type
      * @param string $system
+     * @param string $event Event of schedule
      * @param string $showSystems
      * @param string $direction
      * @param int $page Page of data
-     * @param string $event Event of schedule
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-on-station-docpage/
      *
      * @return string Data
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
-                                               string $direction = '', string $showSystems = '', string $date = '', int $page = 1,
-                                               string $event = self::EVENT_ALL)
+                                               string $event = self::EVENT_ALL, string $direction = '', string $showSystems = '',
+                                               string $date = '', int $page = 1)
     {
         $queryArray = [
             'station' => $station,

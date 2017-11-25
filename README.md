@@ -15,7 +15,7 @@ Yandex Schedule (rasp) API client.
 
 **Retrieving schedule between two stations (for example: New Your airport and Moscow Sheremetyevo)**
 
-```
+```php
 $client = new Client('yourApiKeyHere');
 
 echo $client->getScheduleBetweenStations('NYC', 'SVO',
@@ -25,31 +25,31 @@ echo $client->getScheduleBetweenStations('NYC', 'SVO',
 
 **Retrieving schedule by station (for example: Kyiv-Passazhyrsky railway station)**
 
-```
+```php
 echo $client->getScheduleOnStation('2200001', Client::TRANSPORT_TYPE_TRAIN, Client::SYSTEM_EXPRESS);
 ```
 
 **Retrieving schedule by station (for example: train Berdyansk - Kiev)**
 
-```
+```php
 echo $client->getListStationsRoute('228P_1_2');
 ```
 
 **Retrieving carrier information (for example: Turkish Airlines)**
 
-```
+```php
 echo $client->getCarrier('TK', Client::SYSTEM_IATA);
 ```
 
 **Retrieving nearest stations**
 
-```
+```php
 echo $client->getNearestStations('50.440046', '40.4882367', '40');
 ```
 
 **Retrieving yandex copyright block**
 
-```
+```php
 echo $client->getCopyright();
 ```
 
@@ -59,7 +59,7 @@ echo $client->getCopyright();
 By default using JSON format and russian language.
 
 
-```
+```php
 $client->setDataFormat(Client::DATA_FORMAT_XML);
 $client->setLanguage(Client::DATA_LANG_UK);
 ```

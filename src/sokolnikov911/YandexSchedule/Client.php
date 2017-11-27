@@ -1,8 +1,8 @@
 <?php
 
-namespace YandexSchedule;
+namespace sokolnikov911\YandexSchedule;
 
-use YandexSchedule\Exceptions\YandexException;
+use sokolnikov911\YandexSchedule\Exceptions\YandexException;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 

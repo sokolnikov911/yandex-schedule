@@ -3,7 +3,7 @@
 /**
  * @namespace
  */
-namespace YandexSchedule\Exceptions;
+namespace sokolnikov911\YandexSchedule\Exceptions;
 
 use Exception;
 

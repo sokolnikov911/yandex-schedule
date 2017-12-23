@@ -8,6 +8,8 @@ PHP Yandex Schedule (rasp) API client
 [![composer.lock](https://poser.pugx.org/sokolnikov911/yandex-schedule/composerlock)](https://packagist.org/packages/sokolnikov911/yandex-schedule)
 
 
+Russian version of README you can find here: [README_RU.md](https://github.com/sokolnikov911/yandex-schedule/blob/master/README_RU.md).
+
 Yandex Schedule (rasp) API client.
 
 
@@ -29,7 +31,7 @@ echo $client->getScheduleBetweenStations('NYC', 'SVO',
 echo $client->getScheduleOnStation('2200001', Client::TRANSPORT_TYPE_TRAIN, Client::SYSTEM_EXPRESS);
 ```
 
-**Retrieving schedule by station (for example: train Berdyansk - Kiev)**
+**Retrieving stations list for selected route (for example: train Berdyansk - Kiev)**
 
 ```php
 echo $client->getListStationsRoute('228P_1_2');
@@ -95,7 +97,7 @@ composer.phar update
  
 ## Requirements
 
-This client requires at least PHP7 (yeahh, type hinting!) and [Guzzle](https://github.com/guzzle/guzzle) 6.2.3.
+This client requires at least PHP7 (yeahh, type hinting!) and [Guzzle](https://github.com/guzzle/guzzle) 6.
 
 
 ## License

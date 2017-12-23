@@ -14,7 +14,6 @@ class Client
     private $apiUrl     = 'https://api.rasp.yandex.net/';
     private $apiVersion = 'v1.0';
 
-
     const DATA_FORMAT_JSON = 'json';
     const DATA_FORMAT_XML  = 'xml';
 
@@ -44,7 +43,6 @@ class Client
     const ENDPOINT_NEAREST_STATIONS = 'nearest_stations';
     const ENDPOINT_COPYRIGHT = 'copyright';
 
-    const EVENT_ALL = 'all';
     const EVENT_ARRIVAL = 'arrival';
     const EVENT_DEPARTURE = 'departure';
 
@@ -126,7 +124,7 @@ class Client
      * @return string Data
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
-                                               string $event = self::EVENT_ALL, string $direction = '', string $showSystems = '',
+                                               string $event = '', string $direction = '', string $showSystems = '',
                                                string $date = '', int $page = 1)
     {
         $queryArray = [

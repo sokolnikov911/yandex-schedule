@@ -88,6 +88,9 @@ class Client
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-point-point-docpage/
      *
+     * @throws YandexException
+     * @throws ClientException
+     *
      * @return string Data
      */
     public function getScheduleBetweenStations(string $from, string $to, string $transportTypes, string $system,
@@ -117,6 +120,9 @@ class Client
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-on-station-docpage/
      *
+     * @throws YandexException
+     * @throws ClientException
+     *
      * @return string Data
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
@@ -144,6 +150,9 @@ class Client
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/list-stations-route-docpage/
      *
+     * @throws YandexException
+     * @throws ClientException
+     *
      * @return string Data
      */
     public function getListStationsRoute(string $uid, string $showSystems = '', string $date = '')
@@ -162,6 +171,9 @@ class Client
      * @param string $system
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/query-carrier-docpage/
+     *
+     * @throws YandexException
+     * @throws ClientException
      *
      * @return string Data
      */
@@ -185,6 +197,9 @@ class Client
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/query-nearest-station-docpage/
      *
+     * @throws YandexException
+     * @throws ClientException
+     *
      * @return string Data
      */
     public function getNearestStations(string $lat, string $lng, int $distance,
@@ -206,6 +221,9 @@ class Client
     /**
      * @see https://tech.yandex.ru/rasp/doc/reference/query-copyright-docpage/
      *
+     * @throws YandexException
+     * @throws ClientException
+     *
      * @return string Data
      */
     public function getCopyright()
@@ -218,7 +236,7 @@ class Client
      */
     public function getApiVersion(): string
     {
-        return $this->getApiVersion();
+        return $this->apiVersion;
     }
 
     /**

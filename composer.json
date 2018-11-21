@@ -26,8 +26,13 @@
     "phpunit/phpunit": ">=6.5.5"
   },
   "autoload": {
-    "psr-0": {
-      "sokolnikov911\\YandexSchedule": "src"
+    "psr-4": {
+      "sokolnikov911\\YandexSchedule\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "sokolnikov911\\YandexSchedule\\": "tests/"
     }
   },
   "support": {

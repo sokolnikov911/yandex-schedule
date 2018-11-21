@@ -8,7 +8,7 @@
     "rasp",
     "raspisanie"
   ],
-  "version": "v1.0.3",
+  "version": "v1.0.4",
   "homepage": "https://github.com/sokolnikov911/yandex-schedule",
   "license": "MIT",
   "authors": [
@@ -20,7 +20,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "guzzlehttp/guzzle": "~6.3.0"
+    "guzzlehttp/guzzle": "~6.3.3"
   },
   "require-dev": {
     "phpunit/phpunit": ">=6.5.5"

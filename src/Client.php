@@ -46,6 +46,11 @@ class Client
     const EVENT_ARRIVAL = 'arrival';
     const EVENT_DEPARTURE = 'departure';
 
+    const SHOW_SYSTEMS_ALL    = 'all';
+    const SHOW_SYSTEMS_YANDEX = 'yandex';
+    const SHOW_SYSTEMS_ESR    = 'esr';
+
+
     /**
      * @param string $key API key
      *
@@ -83,6 +88,7 @@ class Client
      * @param string $transportTypes Transport type
      * @param string $system
      * @param int $page Page of data.
+     * @param string $showSystems System Code for answer
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-point-point-docpage/
      *
@@ -92,7 +98,7 @@ class Client
      * @return string Data
      */
     public function getScheduleBetweenStations(string $from, string $to, string $transportTypes, string $system,
-                                               string $date = '', int $page = 1)
+                                               string $date = '', int $page = 1, string $showSystems = '')
     {
         $queryArray = [
             'from' => $from,
@@ -100,7 +106,8 @@ class Client
             'date' => $date,
             'transport_types' => $transportTypes,
             'system' => $system,
-            'page' => $page
+            'page' => $page,
+            'show_systems' => $showSystems
         ];
 
         return $this->getData($this->getEndpointUrl(self::ENDPOINT_SEARCH, $queryArray));
@@ -112,7 +119,7 @@ class Client
      * @param string $transportTypes Transport type
      * @param string $system
      * @param string $event Event of schedule
-     * @param string $showSystems
+     * @param string $showSystems System Code for answer
      * @param string $direction
      * @param int $page Page of data
      *
@@ -143,7 +150,7 @@ class Client
 
     /**
      * @param string $uid
-     * @param string $showSystems
+     * @param string $showSystems System Code for answer
      * @param string $date Date to which you want to receive a list of flights. Should be specified in the format "YYYY-MM-DD". By default, the list of flights for all dates will be returned.
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/list-stations-route-docpage/

@@ -83,7 +83,7 @@ class Client
      * @param string $date Date to which you want to receive a list of flights. Should be specified in the format "YYYY-MM-DD". By default, the list of flights for all dates will be returned.
      * @param string $transportTypes Transport type
      * @param string $system
-     * @param int $page Page of data.
+     * @param int $offset Offset of data.
      * @param string $showSystems System Code for answer
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-point-point-docpage/
@@ -94,7 +94,7 @@ class Client
      * @return string Data
      */
     public function getScheduleBetweenStations(string $from, string $to, string $transportTypes, string $system,
-                                               string $date = '', int $page = 1, string $showSystems = '')
+                                               string $date = '', int $offset = 0, string $showSystems = '')
     {
         $queryArray = [
             'from' => $from,
@@ -102,7 +102,7 @@ class Client
             'date' => $date,
             'transport_types' => $transportTypes,
             'system' => $system,
-            'page' => $page,
+            'offset' => $offset,
             'show_systems' => $showSystems
         ];
 
@@ -117,7 +117,7 @@ class Client
      * @param string $event Event of schedule
      * @param string $showSystems System Code for answer
      * @param string $direction
-     * @param int $page Page of data
+     * @param int $offset Offset of data
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/schedule-on-station-docpage/
      *
@@ -128,7 +128,7 @@ class Client
      */
     public function getScheduleOnStation(string $station, string $transportTypes, string $system,
                                                string $event = '', string $direction = '', string $showSystems = '',
-                                               string $date = '', int $page = 1)
+                                               string $date = '', int $offset = 0)
     {
         $queryArray = [
             'station' => $station,
@@ -138,7 +138,7 @@ class Client
             'system' => $system,
             'show_systems' => $showSystems,
             'direction' => $direction,
-            'page' => $page
+            'offset' => $offset
         ];
 
         return $this->getData($this->getEndpointUrl(self::ENDPOINT_SCHEDULE, $queryArray));
@@ -194,7 +194,7 @@ class Client
      * @param integer $distance Radius in km (from 0 to 50).
      * @param string $stationType
      * @param string $transportTypes Transport type
-     * @param int $page Page of data.
+     * @param int $offset Offset of data.
      *
      * @see https://tech.yandex.ru/rasp/doc/reference/query-nearest-station-docpage/
      *
@@ -205,7 +205,7 @@ class Client
      */
     public function getNearestStations(string $lat, string $lng, int $distance,
                                          string $stationType = '', string $transportTypes = '',
-                                         int $page = 1)
+                                         int $offset = 0)
     {
         $queryArray = [
             'lat' => $lat,
@@ -213,7 +213,7 @@ class Client
             'distance' => $distance,
             'station_type' => $stationType,
             'transport_types' => $transportTypes,
-            'page' => $page
+            'offset' => $offset
         ];
 
         return $this->getData($this->getEndpointUrl(self::ENDPOINT_NEAREST_STATIONS, $queryArray));

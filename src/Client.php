@@ -12,7 +12,7 @@ class Client
     private $dataFormat = self::DATA_FORMAT_JSON;
     private $lang       = self::DATA_LANG_RU;
     private $apiUrl     = 'https://api.rasp.yandex.net/';
-    private $apiVersion = 'v1.0';
+    private $apiVersion = 'v3.0';
 
     const DATA_FORMAT_JSON = 'json';
     const DATA_FORMAT_XML  = 'xml';

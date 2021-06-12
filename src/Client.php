@@ -10,16 +10,12 @@ class Client
 {
     private $key;
     private $dataFormat = self::DATA_FORMAT_JSON;
-    private $lang       = self::DATA_LANG_RU;
+    private $lang       = 'ru_RU';
     private $apiUrl     = 'https://api.rasp.yandex.net/';
     private $apiVersion = 'v3.0';
 
     const DATA_FORMAT_JSON = 'json';
     const DATA_FORMAT_XML  = 'xml';
-
-    const DATA_LANG_RU = 'ru';
-    const DATA_LANG_UK = 'uk';
-    const DATA_LANG_TR = 'tr';
 
     const TRANSPORT_TYPE_PLANE = 'plane';
     const TRANSPORT_TYPE_TRAIN = 'train';
@@ -74,7 +70,7 @@ class Client
     /**
      * Sets language of response data
      *
-     * @param string $lang Language of data. ru|uk|tr
+     * @param string $lang Language of data.
      */
     public function setLanguage(string $lang)
     {
